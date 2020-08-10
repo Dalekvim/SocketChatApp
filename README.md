@@ -6,5 +6,8 @@ This is an Instant Messaging App... Well, not yet - but soon it soon will be.<br
   This feature will be available soon ^(o/o)^
 <p>
 <p>
-  v0.1.1 (Current) Very similar to the previous version but the Server IP is no langer hard coded.
+  v0.1.1 Very similar to the previous version but the Server IP is no langer hard coded.
+</p>
+<p>
+  v0.2.0 (Current) Major Bug Patches and Cross-Client comunication, has been added.
 </p>
