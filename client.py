@@ -13,7 +13,7 @@ class Client:
   FORMAT = SocketConsts.FORMAT
 
   # This can be changed to the IP of the Server you want to connect to.
-  SERVER = '192.168.56.1'
+  SERVER = socket.gethostbyname(socket.gethostname()) # E.g. '192.168.56.1'
   ADDR = (SERVER, PORT)
 
   client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
