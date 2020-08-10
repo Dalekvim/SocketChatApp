@@ -28,9 +28,13 @@ class Client:
     FORMAT = self.FORMAT
     client = self.client
 
+    # This pickles the message so that non-string messages can also be sent.
     message = pickle.dumps(msg)
 
+    # Creating and sending the fixed length header.
     client.send(SocketConsts().fixed_length_header(message, FORMAT))
+
+    # This is what sends the pickled message.
     client.send(message)
 
   '''

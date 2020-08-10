@@ -26,3 +26,5 @@ class Messages:
   def disconnected(self, addr):
     print(f"[DISCONNECTED] {addr} disconnected successfully.")
   
+  def force_disconnect(self, addr):
+    print(f"[ERROR] {addr} closed unexpectedly.")
