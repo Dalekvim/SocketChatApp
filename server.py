@@ -85,6 +85,11 @@ class InitSocket:
           # Every message appart from their own is sent to the Client.
           if client != addr:
             send(f"[{client}]: {msg}", conn)
+      
+      else:
+        # Bug Patch that deletes a Clients message when they have disconnected.
+        if addr in self.clients:
+          del self.clients[addr]
         
     # If there are no errors when disconnecting.
     if err == False:
