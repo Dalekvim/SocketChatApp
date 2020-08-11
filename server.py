@@ -31,17 +31,16 @@ class InitSocket:
     IMPORTANT: 'conn' is a necessary input (See v0.2.0).
     '''
     def send(msg, conn):
-      FORMAT = self.FORMAT
-
       # This pickles the message so that non-string messages can also be sent.
       message = pickle.dumps(msg)
 
       # Creating and sending the fixed length header.
-      conn.send(SocketConsts().fixed_length_header(message, FORMAT))
+      conn.send(SocketConsts().fixed_length_header(message, self.FORMAT))
 
       # This is what sends the pickled message.
       conn.send(message)
 
+    # New Client notification
     Messages().new_conn(addr)
 
     connected = True
@@ -67,29 +66,33 @@ class InitSocket:
           if msg == Messages().DISCONNECT_MESSAGE:
             connected = False
 
-          # It displays different messages depending on whether the Client has asked to disconnect or not.
-          if connected:
-            Messages().display_msg(addr, msg)
-
-            # Uses the 'clients' dictionary to find the last message sent by another the Clients.
-            # The dictionary is looped through to get the last message from every Client.
-            for client, msg in self.clients.items():
-              # Every message appart from their own is sent to the Client.
-              if client != addr:
-                send(f"[{client}]: {msg}", conn)
-          else:
-            send(Messages().disconnected_successfully_msg, conn)
       except:
-        connected = False
+        # Force disconnected Message.
         Messages().force_disconnect(addr)
         err = True
-        conn.close()
 
+        # Closing connection.
+        connected = False
+        conn.close()
+      
+      # It displays different messages depending on whether the Client has asked to disconnect or not.
+      if connected:
+        Messages().display_msg(addr, msg)
+
+        # Uses the 'clients' dictionary to find the last message sent by another the Clients.
+        # The dictionary is looped through to get the last message from every Client.
+        for client, msg in self.clients.items():
+          # Every message appart from their own is sent to the Client.
+          if client != addr:
+            send(f"[{client}]: {msg}", conn)
+        
+    # If there are no errors when disconnecting.
     if err == False:
+      send(Messages().disconnected_successfully_msg, conn)
+
       # Disconnects the Client and closes the connection.
       Messages().disconnected(addr)
       conn.close()
-
 
   def start(self):
     # Starting the server.
