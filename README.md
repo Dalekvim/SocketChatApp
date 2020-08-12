@@ -1,6 +1,16 @@
 # SocketChatApp
+## How to use
+1. Install the latest version of this App --> [here](https://github.com/Dalekvim/SocketChatApp/releases) <--
+2. Unzip the file and run the Server. You can do this by double clicking on the 'server.py' file, or if you are really fancy, you can run it from the command prompt with
+`server.py`.
+3. If you do the same with the `client.py` file, on the same network, it should work fine.
 
-This is an Instant Messaging App... Well, not yet - but soon it soon will be.<br>
+## How to report Bugs
+If you do find a Bug or even if it's just something you find annoying, report it and I'll see what I can do to fix it.  
+Report Bugs --> [here](https://github.com/Dalekvim/SocketChatApp/issues) <--  
+Click on the New Issue button and explain the problem :wink:
+
+## Version Log
 <p>
   v0.1.0 Clients can send messages to and recieve messages from the Server, but they can't send messages to eachother.
   This feature will be available soon ^(o/o)^
